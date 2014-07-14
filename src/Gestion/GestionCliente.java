@@ -11,7 +11,6 @@ import Clases.Cliente;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
-import javax.swing.JTable;
 
 
 /**
@@ -95,18 +94,14 @@ public class GestionCliente implements IGestion
     @Override
     public void Consultar() throws SQLException 
     { 
-        try
-        {            
+        try{
             Conexion.GetInstancia().Conectar();
-           JTable jb = new JTable();
-           //jb = 
-           Conexion.GetInstancia().Ejecutar("DELETE FROM cliente WHERE cedula = "+cliente.getCedula());
-            
-            Conexion.GetInstancia().Desconectar(); 
-        }
-        catch(SQLException ex)
-        { 
-            throw ex;
+            Conexion.GetInstancia().Ejecutar("SELECT nombre = '"+cliente.getNombre()+"', direccion = '"+cliente.getDireccion()+"' from cliente WHERE cedula = "+cliente.getCedula());
+            Conexion.GetInstancia().Desconectar();
+           }
+        catch(SQLException e)
+        {
+            throw e;
         }
     }
     
