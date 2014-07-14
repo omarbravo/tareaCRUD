@@ -56,13 +56,9 @@ public class Cliente extends javax.swing.JFrame
 
         label1.setText("Cedula");
 
-        txtnombre.setText(" ");
-
         label2.setText("Nombre");
 
         label3.setText("Direccion");
-
-        txtcupo.setText(" ");
 
         label4.setText("Cupo");
 
@@ -220,9 +216,6 @@ public class Cliente extends javax.swing.JFrame
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         gestioncliente.getCliente().setCedula(txtcedula.getText());
-        gestioncliente.getCliente().setNombre(txtnombre.getText());
-        gestioncliente.getCliente().setDireccion(txtdireccion.getText());
-        gestioncliente.getCliente().setCupo(Double.parseDouble(txtcupo.getText()));
         try
         {
             gestioncliente.Eliminar();
@@ -235,10 +228,25 @@ public class Cliente extends javax.swing.JFrame
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-       gestioncliente.getCliente().setCedula(txtcedula.getText());
+       gestioncliente.getCliente().setCedula(txtcedula.getText());  
+       try
+       {
+           gestioncliente.Consultar();
+           pasarDatos();
+       }
+       catch(SQLException ex)
+       {
+           JOptionPane.showMessageDialog(this, ex.getMessage());
+       }
        
     }//GEN-LAST:event_btnConsultarActionPerformed
 
+    private void pasarDatos()
+    {
+        txtnombre.setText(gestioncliente.getCliente().getNombre());
+        txtdireccion.setText(gestioncliente.getCliente().getDireccion());       
+    }
+    
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         gestioncliente.getCliente().setCedula(txtcedula.getText());
         gestioncliente.getCliente().setNombre(txtnombre.getText());
