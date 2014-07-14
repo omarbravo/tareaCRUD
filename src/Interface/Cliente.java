@@ -243,8 +243,10 @@ public class Cliente extends javax.swing.JFrame
 
     private void pasarDatos()
     {
+        txtcedula.setText(gestioncliente.getCliente().getCedula());
         txtnombre.setText(gestioncliente.getCliente().getNombre());
-        txtdireccion.setText(gestioncliente.getCliente().getDireccion());       
+        txtdireccion.setText(gestioncliente.getCliente().getDireccion()); 
+        txtcupo.setText(Double.toString(gestioncliente.getCliente().getCupo()));
     }
     
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
