@@ -83,9 +83,21 @@ public class Conexion {
          catch(SQLException ex)
          {
              throw ex;
+         }        
+     }
+     
+     public ResultSet EjecutarConsulta (String Cadena) throws SQLException
+     {
+         try
+         {
+             Sentencia= ConexionDatos.prepareStatement(Cadena);
+             ConjuntoDatos = Sentencia.executeQuery();
+             return ConjuntoDatos;
          }
-         
-         
+         catch(SQLException ex)
+         {
+             throw ex;
+         }   
      }
     
 }
