@@ -250,10 +250,7 @@ public class Cliente extends javax.swing.JFrame
     }
     
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        gestioncliente.getCliente().setCedula(txtcedula.getText());
-        gestioncliente.getCliente().setNombre(txtnombre.getText());
-        gestioncliente.getCliente().setDireccion(txtdireccion.getText());
-        gestioncliente.getCliente().setCupo(Double.parseDouble(txtcupo.getText()));
+        pasarDatos();
         try
         {
             gestioncliente.Nuevo();
