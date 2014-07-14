@@ -11,6 +11,7 @@ import Clases.Cliente;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
+import java.sql.ResultSet;
 
 
 /**
@@ -70,10 +71,10 @@ public class GestionCliente implements IGestion
     @Override
     public void Nuevo() throws SQLException 
     {    
-        cliente.setCedula("SD");
-        cliente.setNombre("SD");
-        cliente.setDireccion("SD");
-        cliente.setCupo(00.00);
+        cliente.setCedula("");
+        cliente.setNombre("");
+        cliente.setDireccion("");
+        cliente.setCupo(0);
     }
 
     @Override
@@ -96,7 +97,14 @@ public class GestionCliente implements IGestion
     { 
         try{
             Conexion.GetInstancia().Conectar();
-            Conexion.GetInstancia().Ejecutar("SELECT nombre = '"+cliente.getNombre()+"', direccion = '"+cliente.getDireccion()+"' from cliente WHERE cedula = "+cliente.getCedula());
+            ResultSet consulta = Conexion.GetInstancia().EjecutarConsulta("SELECT cedula, nombre, direccion, cupo FROM cliente WHERE cedula = '"+cliente.getCedula()+"'");       
+            while(consulta.next())
+            {
+               cliente.setCedula(consulta.getString(1));
+               cliente.setNombre(consulta.getString(2));
+               cliente.setDireccion(consulta.getString(3));
+               cliente.setCupo(consulta.getDouble(4));
+            }
             Conexion.GetInstancia().Desconectar();
            }
         catch(SQLException e)
